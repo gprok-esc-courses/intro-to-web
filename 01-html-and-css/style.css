@@ -14,10 +14,12 @@ p {
     padding: 10px;
     margin-top: -15px;
 }
+
 p.conclusion {
     background-color: red;
     color: azure;
 }
+
 h2#abstract {
     font-style: italic;
 }

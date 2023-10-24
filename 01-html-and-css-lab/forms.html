@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.form-div {
+            padding-top: 7px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        div.form-div input, div.form-div textarea {
+            padding: 5px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Register</h1>
+    <form>
+        <div class="form-div"><input type="text" name="fullname" placeholder="Full name" /></div>
+        <div class="form-div"><input type="email" name="email" placeholder="E-mail" /></div>
+        <div class="form-div"><input type="password" name="password" placeholder="Password" /></div>
+        <div class="form-div"><textarea cols="65" rows="10" name="description" placeholder="Description"></textarea></div>
+        <div class="form-div">
+            <select>
+                <option value="0">Select Country</option>
+                <option value="1">Greece</option>
+                <option value="2">Albania</option>
+                <option value="3">Bulgaria</option>
+            </select>
+        </div>
+        <div class="form-div">Married? <input type="checkbox" /></div>
+        <div class="form-div">
+            <input type="radio" name="edu" /> High School,  
+            <input type="radio" name="edu" /> BSc,  
+            <input type="radio" name="edu" /> MSc,
+            <input type="radio" name="edu" /> PhD  
+        </div>
+        <div class="form-div">
+            ID image: <input type="file" />
+        </div>
+        <div class="form-div"><button type="submit">Submit</button></div>
+    </form>
+</body>
+</html>
