@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #question {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz</h1>
+    <button onclick="start()">Start</button>
+    <div id="question" hidden>-</div>
+    <div id="response" hidden>
+        <input type="radio" name="answer" value="True"> True <br>
+        <input type="radio" name="answer" value="False"> False
+    </div>
+    <div id="submit" hidden><button onclick="next()">Submit</button></div>
+    <div id="score" hidden><h1>Score: <span id="score_value"></span></h1></div>
+
+    <script>
+        var score = 0
+        var counter = 0
+        var correct_answer = ''
+
+        function start() {
+            counter = 0
+            document.getElementById("score").style.display = "none";
+            document.getElementById("question").style.display = "block";
+            document.getElementById("response").style.display = "block";
+            document.getElementById("submit").style.display = "block";
+            next()
+        }
+
+        function next() {
+            // Check user's response and update score
+            if(counter == 10) {
+                document.getElementById("question").style.display = "none";
+                document.getElementById("response").style.display = "none";
+                document.getElementById("submit").style.display = "none";
+
+                document.getElementById("score").style.display = "block";
+                // Display score
+            }
+            else {
+                counter++;
+                fetch('https://opentdb.com/api.php?amount=1&type=boolean')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("question").innerHTML = data['results'][0]['question']
+                    correct_answer = data['results'][0]['correct_answer']
+                })
+            }
+        }
+    </script>
+</body>
+</html>

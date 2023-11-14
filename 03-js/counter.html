@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        button {
+            font-size: 1.8em;
+            width: 70px;
+        }
+        #counter {
+            font-size: 2.4em;
+            font-weight: bold;
+        }
+        #buttons {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Counter</h1>
+    <div id="counter">0</div>
+    <div id="buttons">
+        <button onclick="increase()">+</button> 
+        <button onclick="decrease()">-</button>
+    </div>
+    
+    <script>
+        function increase() {
+            let c = document.getElementById("counter").innerText
+            let value = parseInt(c)+1
+            document.getElementById("counter").innerText = value 
+        }
+
+        function decrease() {
+            let c = document.getElementById("counter").innerText
+            let value = parseInt(c)-1
+            document.getElementById("counter").innerText = value 
+        }
+    </script>
+</body>
+</html>
