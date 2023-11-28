@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="getTerm()">
+    <h1>Search <span id="term"></span></h1>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="users.html">Users</a></li>
+        <li><a href="blogs.html">Blogs</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
+
+    <script>
+        function getTerm() {
+            console.log(window.location.search)
+            let params = window.location.search
+            let values = params.split('=')
+            console.log(values[1])
+            document.getElementById('term').innerHTML = values[1]
+        }
+    </script>
+</body>
+</html>
