@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="drawing"></canvas>
+    <button onclick="draw()">Draw</button>
+
+    <script>
+        function draw() {
+            let canvas = document.getElementById('drawing')
+            canvas.width = 500
+            canvas.height = 500
+            let context = canvas.getContext('2d')
+
+            context.beginPath()
+            context.moveTo(0, 0)
+            context.lineTo(0, 200)
+            context.lineTo(200, 200)
+            context.lineTo(200, 0)
+            context.lineTo(0, 0)
+            context.fillStyle = 'yellow'
+            context.fill()
+
+            context.beginPath()
+            context.moveTo(20, 20)
+            context.lineTo(45, 45)
+            context.lineTo(60, 90)
+            context.lineTo(16, 102)
+            context.lineTo(20, 20)
+            context.fillStyle = 'red'
+            context.fill()
+
+            context.beginPath()
+            context.moveTo(16, 102)
+            context.lineTo(60, 90)
+            context.lineTo(60, 120)
+            context.lineTo(16, 120)
+            context.lineTo(16, 102)
+            context.fillStyle = 'gray'
+            context.fill()
+
+            context.beginPath()
+            context.ellipse(250, 250, 30, 60, 0, 0, 3)
+            context.fillStyle = 'green'
+            context.fill()
+        }
+    </script>
+</body>
+</html>

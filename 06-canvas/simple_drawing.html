@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: solid 1px black;
+        }
+    </style>
+</head>
+<body onload="setCanvasSize()">
+    <canvas id="drawing"></canvas>
+    <button onclick="draw()">Draw</button>
+
+    <script>
+        let prevX = 0
+        let prevY = 0
+        let clickCounter = 0
+        function drawLine() {
+
+        }
+        function clickedCanvas(canvas, event) {
+            let rectangle = canvas.getBoundingClientRect()
+            let x = event.clientX - rectangle.left
+            let y = event.clientY - rectangle.top
+            if(clickCounter > 0) {
+                draw(prevX, prevY, x, y)
+            }
+            prevX = x
+            prevY = y
+            clickCounter++
+            console.log(x + ", " + y)
+        }
+        function setCanvasSize() {
+            let canvas = document.getElementById('drawing')
+            canvas.width = 400
+            canvas.height = 400
+
+            canvas.addEventListener('mousedown', (e) => {
+                clickedCanvas(canvas, e)
+            })
+        }
+        function draw(sx, sy, ex, ey) {
+            let canvas = document.getElementById('drawing')
+            let context = canvas.getContext('2d')
+
+            context.beginPath()
+            context.moveTo(sx, sy)
+            context.lineTo(ex, ey)
+            context.stroke()
+        }
+    </script>
+</body>
+</html>
