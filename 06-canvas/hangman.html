@@ -19,13 +19,87 @@
     <canvas id="drawing"></canvas>
     <div><button onclick="getSecretWord()">Play</button> <span id="secret"></span></div>
     <div>
-        <input type="text" id="letter" /> <button>Check</button>
+        <input type="text" id="letter" onkeydown="inputChanged()" /> 
+        <button onclick="check()">Check</button>
     </div>
     <div id="secret"></div>
+    <div id="wrong"></div>
+    <div id="message"></div>
 
     <script>
         var word = ''
         var secret = ''
+        var correct = []
+        var wrong = []
+
+        function check() {
+            let letter = document.getElementById('letter').value
+            
+            if(word.includes(letter)) {
+                if(!correct.includes(letter)) {
+                    correct.push(letter)
+                    updateSecret()
+                    if(wordFound()) {
+                        document.getElementById('message').innerText = "Congrats! Word found."
+                    }
+                }
+            }
+            else {
+                if(!wrong.includes(letter)) {
+                    wrong.push(letter)
+                    drawHangman()
+                    if(wrong.length == 6) {
+                        document.getElementById('message').innerText = "You are hanged."
+                    }
+                }
+            }
+        }
+
+        function inputChanged() {
+            let v = document.getElementById('letter').value
+            console.log(v + " " + v.length)
+            document.getElementById('letter').value = ''
+        }
+
+        function drawHangman() {
+            switch(wrong.length) {
+                case 6:
+                    console.log("right hand")
+                case 5: 
+                    console.log("left hand")
+                case 4:
+                    console.log("right leg") 
+                case 3: 
+                    console.log("left leg")
+                case 2: 
+                    console.log("body")
+                case 1:
+                    console.log("head")
+            }
+        }
+
+        function wordFound() {
+            for(let i = 1; i < word.length-1; i++) {
+                if(!correct.includes(word.charAt(i))) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function updateSecret() {
+            secret = word.charAt(0)
+            for(let i = 1; i < word.length-1; i++) {
+                if(correct.includes(word.charAt(i))) {
+                    secret = secret + " " + word.charAt(i)
+                }
+                else {
+                    secret = secret + " _"
+                }
+            }
+            secret = secret + " " + word.charAt(word.length-1)
+            document.getElementById('secret').innerText = secret
+        }
 
         function getSecretWord() {
             fetch('https://random-word-api.herokuapp.com/word?number=1')
@@ -40,6 +114,7 @@
                 secret = secret + " " + word.charAt(word.length-1)
                 document.getElementById('secret').innerText = secret
             })
+            // clean canvas
         }
     </script>
 </body>
