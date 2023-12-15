@@ -22,8 +22,8 @@
         <input type="text" id="letter" onkeydown="inputChanged()" /> 
         <button onclick="check()">Check</button>
     </div>
-    <div id="secret"></div>
     <div id="wrong"></div>
+    <div id="show_secret_word"></div>
     <div id="message"></div>
 
     <script>
@@ -62,19 +62,46 @@
         }
 
         function drawHangman() {
+            let canvas = document.getElementById('drawing')
+            let context = canvas.getContext('2d')
+            context.clearRect(0, 0, canvas.width, canvas.height)
+            
             switch(wrong.length) {
                 case 6:
                     console.log("right hand")
+                    context.beginPath()
+                    context.moveTo(150, 60)
+                    context.lineTo(120, 30)
+                    context.stroke()
                 case 5: 
                     console.log("left hand")
+                    context.beginPath()
+                    context.moveTo(150, 60)
+                    context.lineTo(180, 30)
+                    context.stroke()
                 case 4:
                     console.log("right leg") 
+                    context.beginPath()
+                    context.moveTo(150, 90)
+                    context.lineTo(120, 120)
+                    context.stroke()
                 case 3: 
                     console.log("left leg")
+                    context.beginPath()
+                    context.moveTo(150, 90)
+                    context.lineTo(180, 120)
+                    context.stroke()
                 case 2: 
                     console.log("body")
+                    context.beginPath()
+                    context.moveTo(150, 30)
+                    context.lineTo(150, 90)
+                    context.stroke()
                 case 1:
                     console.log("head")
+                    context.beginPath()
+                    context.ellipse(150, 20, 10, 10, 360, 0, 360)
+                    context.stroke()
             }
         }
 
@@ -115,6 +142,11 @@
                 document.getElementById('secret').innerText = secret
             })
             // clean canvas
+            let canvas = document.getElementById('drawing')
+            let context = canvas.getContext('2d')
+            context.clearRect(0, 0, canvas.width, canvas.height)
+            correct = []
+            wrong = []
         }
     </script>
 </body>
